@@ -1,0 +1,9 @@
+pandas
+re
+datefinder
+date_guesser
+confusables
+requests
+newspaper3
+urllib
+selenium
