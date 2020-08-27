@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mit-news-tools-iamef",  # Replace with your own username
-    version="0.0.1",
+    version="0.0.2",
     author="Arun Wongprommoon and Emily Fan",
     author_email="emilyfan@mit.edu",
     description="tools to help people better understand the news",
