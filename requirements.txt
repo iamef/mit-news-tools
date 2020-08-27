@@ -1,9 +1,8 @@
 pandas
-re
 datefinder
 date_guesser
 confusables
 requests
-newspaper3
+newspaper3k
 urllib
 selenium
