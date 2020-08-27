@@ -4,5 +4,4 @@ date_guesser
 confusables
 requests
 newspaper3k
-urllib
 selenium
