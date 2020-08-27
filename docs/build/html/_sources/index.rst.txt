@@ -1,10 +1,10 @@
-.. mit-news-tools documentation master file, created by
-   sphinx-quickstart on Thu Aug 27 12:30:26 2020.
+.. mit-news-classify documentation master file, created by
+   sphinx-quickstart on Thu Aug 27 14:42:42 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to mit-news-tools's documentation!
-==========================================
+Welcome to mit-news-classify's documentation!
+=============================================
 
 .. toctree::
    :maxdepth: 2
