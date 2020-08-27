@@ -1,15 +1,25 @@
 """
-purpose:
-    Get rid of all nonascii characters given a string
-
-author: emilyfan
-last edited: 8/27
-last edited: 7/1
+The purpose of this module is to convert a string with non-ASCII characters to a string that is completely ASCII.
 """
 from confusables import normalize
 
 
 def asciify(text: str, return_failed_chars=False):
+    """
+    Takes a string and returns an ASCII version of it.
+    If there is no suitable ASCII version of the string, it will be replaced by a space.
+
+    If return_failed_chars is True, it returns a tuple.
+    The first element is the asciified string.
+    The second element is a list of characters that failed to be converted into ASCII and instead were converted to spaces.
+    example: "asciified string", [":)", ":—)"]
+
+    :param text: A string that you want to make sure is ASCII.
+    :param return_failed_chars: If true, will return a list of characters that have failed to convert to ASCII
+    :return: an ASCII version of the input string;
+            if return_failed_chars is True, it also returns a list of characters that failed to be converted into ASCII
+            and instead were converted to spaces
+    """
     retstr = ""
 
     numconvchar = 0

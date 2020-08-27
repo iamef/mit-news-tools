@@ -30,7 +30,14 @@ from selenium.webdriver import Firefox
 
 
 def requests_download(url, return_html=True):
-    page = requests.get(url)
+    """
+    Use the requests package to download the html version of the
+
+    :param url:
+    :param return_html:
+    :return:
+    """
+    page = requests.get(url)  # TODO do something about error responses
     if return_html:
         return page.text
     return page
