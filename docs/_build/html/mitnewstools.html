@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mitnewstools package &mdash; mit-news-tools 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="mitnewstools" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> mit-news-tools
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">mitnewstools</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mitnewstools package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mitnewstools.asciify">mitnewstools.asciify module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mitnewstools.newshomepage">mitnewstools.newshomepage module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mitnewstools.printhelloworld">mitnewstools.printhelloworld module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mitnewstools.scrapedate">mitnewstools.scrapedate module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-mitnewstools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">mit-news-tools</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">mitnewstools</a> &raquo;</li>
+        
+      <li>mitnewstools package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mitnewstools.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mitnewstools-package">
+<h1>mitnewstools package<a class="headerlink" href="#mitnewstools-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mitnewstools.asciify">
+<span id="mitnewstools-asciify-module"></span><h2>mitnewstools.asciify module<a class="headerlink" href="#module-mitnewstools.asciify" title="Permalink to this headline">¶</a></h2>
+<p>The purpose of this module is to convert a string with non-ASCII characters to a string that is completely ASCII.</p>
+<dl class="function">
+<dt id="mitnewstools.asciify.asciify">
+<code class="descclassname">mitnewstools.asciify.</code><code class="descname">asciify</code><span class="sig-paren">(</span><em>text: str</em>, <em>return_failed_chars=False</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.asciify.asciify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a string and returns an ASCII version of it.
+If there is no suitable ASCII version of the string, it will be replaced by a space.</p>
+<p>If return_failed_chars is True, it returns a tuple.
+The first element is the asciified string.
+The second element is a list of characters that failed to be converted into ASCII and instead were converted to spaces.
+example: “asciified string”, [“:)”, “:—)”]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>text</strong> – A string that you want to make sure is ASCII.</li>
+<li><strong>return_failed_chars</strong> – If true, will return a list of characters that have failed to convert to ASCII</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an ASCII version of the input string;
+if return_failed_chars is True, it also returns a list of characters that failed to be converted into ASCII
+and instead were converted to spaces</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mitnewstools.newshomepage">
+<span id="mitnewstools-newshomepage-module"></span><h2>mitnewstools.newshomepage module<a class="headerlink" href="#module-mitnewstools.newshomepage" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>On second thought, I suggest that you simply make a single package installable with</dt>
+<dd>pip install mit-news-tools</dd>
+</dl>
+<p>that includes all the functions we discussed as well as dateguesser:</p>
+<p>def download(url): #  returns html</p>
+<p>def dateguesser(html): # returns [publication date, …]</p>
+<p>def extract_html(html): # Return lists of URLs found in the html</p>
+<p>def classify_url(parent_url,url): # Returns [True/False,… perhaps additional info]</p>
+<p>Does that sound good?
+:-)</p>
+<p>ASCIIFY method can be added here as well</p>
+<dl class="function">
+<dt id="mitnewstools.newshomepage.extract_base_url">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">extract_base_url</code><span class="sig-paren">(</span><em>url: str</em>, <em>endswithslash=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.extract_base_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.extract_domain">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">extract_domain</code><span class="sig-paren">(</span><em>url: str</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.extract_domain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.extract_news_urls_selenium">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">extract_news_urls_selenium</code><span class="sig-paren">(</span><em>driver</em>, <em>match_file='newsurlpatterns.csv'</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.extract_news_urls_selenium" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.extract_urls">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">extract_urls</code><span class="sig-paren">(</span><em>html: str</em>, <em>base_url: str</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.extract_urls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.filter_article_urls">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">filter_article_urls</code><span class="sig-paren">(</span><em>urls: list</em>, <em>domain: str</em>, <em>match_file='newsurlpatterns.csv'</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.filter_article_urls" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.get_match_formula">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">get_match_formula</code><span class="sig-paren">(</span><em>domain</em>, <em>file='newsurlpatterns.csv'</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.get_match_formula" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.is_news_url">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">is_news_url</code><span class="sig-paren">(</span><em>url: str</em>, <em>domain: str</em>, <em>match_formula='newsurlpatterns.csv'</em>, <em>blacklist=None</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.is_news_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.news3k_download">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">news3k_download</code><span class="sig-paren">(</span><em>url</em>, <em>return_html=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.news3k_download" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.requests_download">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">requests_download</code><span class="sig-paren">(</span><em>url</em>, <em>return_html=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.requests_download" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the requests package to download the html version of the</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>url</strong> – </li>
+<li><strong>return_html</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.newshomepage.selenium_download">
+<code class="descclassname">mitnewstools.newshomepage.</code><code class="descname">selenium_download</code><span class="sig-paren">(</span><em>url</em>, <em>driver=None</em>, <em>return_html=True</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.newshomepage.selenium_download" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-mitnewstools.printhelloworld">
+<span id="mitnewstools-printhelloworld-module"></span><h2>mitnewstools.printhelloworld module<a class="headerlink" href="#module-mitnewstools.printhelloworld" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mitnewstools.printhelloworld.printhelloworld">
+<code class="descclassname">mitnewstools.printhelloworld.</code><code class="descname">printhelloworld</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.printhelloworld.printhelloworld" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-mitnewstools.scrapedate">
+<span id="mitnewstools-scrapedate-module"></span><h2>mitnewstools.scrapedate module<a class="headerlink" href="#module-mitnewstools.scrapedate" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mitnewstools.scrapedate.emily_datefind_html">
+<code class="descclassname">mitnewstools.scrapedate.</code><code class="descname">emily_datefind_html</code><span class="sig-paren">(</span><em>article_html</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.scrapedate.emily_datefind_html" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.scrapedate.emily_datefind_json">
+<code class="descclassname">mitnewstools.scrapedate.</code><code class="descname">emily_datefind_json</code><span class="sig-paren">(</span><em>article_html</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.scrapedate.emily_datefind_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.scrapedate.find_html_in_between">
+<code class="descclassname">mitnewstools.scrapedate.</code><code class="descname">find_html_in_between</code><span class="sig-paren">(</span><em>articlehtml: str</em>, <em>keyhtml: str</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.scrapedate.find_html_in_between" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="mitnewstools.scrapedate.get_dates">
+<code class="descclassname">mitnewstools.scrapedate.</code><code class="descname">get_dates</code><span class="sig-paren">(</span><em>article_html</em><span class="sig-paren">)</span><a class="headerlink" href="#mitnewstools.scrapedate.get_dates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-mitnewstools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mitnewstools" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="mitnewstools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Emily Fan, Arun Wongprommoon
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
