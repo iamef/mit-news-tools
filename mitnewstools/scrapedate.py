@@ -80,7 +80,7 @@ def get_dates(article_html, url):
 
     # add html to try because some news sources like psychology today only has html way of scraping
     if pubtime == "":
-        pubtime = emily_datefind_html(article_html)
+        pubtime = emily_datefind_html(article_html, url)
 
         print("Go HTML", pubtime)  # add print statement
 
