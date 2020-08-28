@@ -84,6 +84,20 @@ def get_dates(article_html, url):
 
         print("Go HTML", pubtime)  # add print statement
 
+    # now, try to look at the url
+    url_date = re.search(
+        r"(19|20)\d{2}[/\-_]"  # year
+        r"[0-1]?\d[/\-_]"  # month
+        r"[0-3]?\d",  # day
+        url)
+
+    if url_date is not None:
+        date_found = re.split(r"[/\-_]", url_date.group())
+        year = int(date_found[0])
+        month = int(date_found[1])
+        day = int(date_found[2])
+        pubtime = datetime.date(year, month, day).isoformat()
+
     # add date-guesser
     if pubtime == "":
         guess = guess_date(url=arts.iloc[i, 0], html=article.html)
