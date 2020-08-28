@@ -1,0 +1,16 @@
+newssource, htmlparent
+psychologytoday,"<p class=""blog_entry--full__date fine-print"">"
+bbc,"<li class=""mini-info-list__item""><div class=""date date--v2"""
+wsj,"<time class=""timestamp article__timestamp flexbox__flex--1"">"
+time,"<div class=""timestamp published-date padding-12-left"">"
+rt.com,"<span class=""date"">"
+propublica,"<time class=""timestamp"""
+cbsnews,<time
+cbs,<time
+buzzfeed,"<div class=""news-article-header__timestamps"">"
+breitbart,<time
+aljazeera,"<time class=""timeagofunction"""
+americanconservative,"<div class=""c-post-meta__inner"">"
+jacobinmag,"<time class=""po-hr-fl__date"">"
+businessinsider,"<div class=""datestamp"">"
+infowars,"<div class=""entry-meta"">"
