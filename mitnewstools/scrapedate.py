@@ -48,7 +48,7 @@ def emily_datefind_html(article_html: str, url: str, map_file="datemap.csv"):  #
         # print(dateraw, newscuesdf[newssource][0])  for debugging purposes
         try:
             dateparsed = next(datefinder.find_dates(dateraw))
-            return dateparsed.isoformat()[:19]
+            return dateparsed.isoformat()
         except:
             return ""
 
@@ -105,4 +105,15 @@ def get_dates(article_html):
         # else:
         # print(guess.accuracy, guess.method, guess.date)
 
-    return (trim(pubtime, 19), trim(modtime, 19))
+    return pubtime, modtime
+
+if __name__ == "__main__":
+    url = "https://www.psychologytoday.com/us/blog/understanding-nootropics/202008/how-nootropics-boost-mental-clarity-and-focus"
+    # import requests
+    # page = requests.get(url)
+    # emily_datefind_html(page.text, url)
+
+    from newspaper import Article
+    art = Article(url)
+    art.download()
+    print(emily_datefind_html(art.html, url))
