@@ -70,17 +70,10 @@ def emily_datefind_json(article_html):  # rename to _json
     return retval
 
 
-def get_dates(article_html):
-    try:
-        # did you mean article.publish_date instead of a.publish_date?
-        # pubtime = a.publish_date.isoformat()[:19]
-        pubtime = article.publish_date.isoformat()[:19]
-
-        # print("Go Newspaper 3K", pubtime)  # add print statement
-    except:
-        pubtime = ""
+def get_dates(article_html, url):
+    # first try the json method
     datedict = emily_datefind_json(article_html)  # method name changed
-    pubtime = datedict.get("datePublished", pubtime)
+    pubtime = datedict.get("datePublished", '')
     modtime = datedict.get("dateModified", "")
 
     print("Go JSON", datedict)  # add print statement
