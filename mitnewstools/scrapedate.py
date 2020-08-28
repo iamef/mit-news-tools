@@ -7,7 +7,7 @@ from date_guesser import guess_date, Accuracy
 
 # uncommented this because some newspapers like psychology today
 # don't have the json format
-def emily_datefind_html(article_html: str, url: str, map_file="datemap.csv"):  # rename to _html
+def datefind_html(article_html: str, url: str, map_file="datemap.csv"):  # rename to _html
     """
     Given the html and url of a news article,
     return the date published in isoformat or an empty string if date cannot be found
@@ -59,7 +59,7 @@ def emily_datefind_html(article_html: str, url: str, map_file="datemap.csv"):  #
 
 # Returns a dictionary in the form
 # {'datePublished': '2020-06-29T18:51:27-04:00', 'dateModified': '2020-06-29T19:52:56-04:00'}
-def emily_datefind_json(article_html):  # rename to _json
+def datefind_json(article_html):  # rename to _json
     """
     Given the html of a news article,
     return a dictionary with keys that starts with date, if found, such as datePublished, dateModified, or dateCreated.
@@ -141,7 +141,7 @@ def get_dates(article_html, url):
     return pubtime, modtime
 
 if __name__ == "__main__":
-    url = "https://www.psychologytoday.com/us/blog/understanding-nootropics/202008/how-nootropics-boost-mental-clarity-and-focus"
+    url = "https://www.cnn.com/2020/06/16/politics/cia-wikileaks-vault-7-leak-report/index.html"
     # import requests
     # page = requests.get(url)
     # emily_datefind_html(page.text, url)
@@ -149,4 +149,4 @@ if __name__ == "__main__":
     from newspaper import Article
     art = Article(url)
     art.download()
-    print(emily_datefind_html(art.html, url))
+    print(get_dates(art.html, url))
