@@ -100,13 +100,13 @@ def get_dates(article_html, url):
     pubtime = datedict.get("datePublished", '')
     modtime = datedict.get("dateModified", "")
 
-    print("Go JSON", datedict)  # add print statement
+    # print("Go JSON", datedict)  # add print statement
 
     # add html to try because some news sources like psychology today only has html way of scraping
     if pubtime == "":
         pubtime = emily_datefind_html(article_html, url)
 
-        print("Go HTML", pubtime)  # add print statement
+        # print("Go HTML", pubtime)  # add print statement
 
     # now, try to look at the url
     url_date = re.search(
@@ -122,16 +122,18 @@ def get_dates(article_html, url):
         day = int(date_found[2])
         pubtime = datetime.date(year, month, day).isoformat()
 
+        # print('Go url!', pubtime)
+
     # add date-guesser
     if pubtime == "":
-        guess = guess_date(url=arts.iloc[i, 0], html=article.html)
+        guess = guess_date(url, article_html)
         if guess.accuracy == Accuracy.DATE or guess.accuracy == Accuracy.DATETIME:
             pubtime = guess.date.isoformat()
             # print(guess.date.isoformat()[:19], guess.method)
-            print("Go dateguesser", pubtime, guess.method)
+            # print("Go dateguesser", pubtime, guess.method)
         elif guess.accuracy == Accuracy.PARTIAL:
             pubtime = guess.date.isoformat()[:7]
-            print("Go dateguesser", pubtime, guess.method)
+            # print("Go dateguesser", pubtime, guess.method)
             # print(guess.accuracy, guess.method, guess.date.isoformat()[:7])
         # else:
         # print(guess.accuracy, guess.method, guess.date)
