@@ -1,11 +1,9 @@
 import pandas as pd
 import re
 
+import datetime
 import datefinder
 from date_guesser import guess_date, Accuracy
-
-import newspaper
-
 
 # added this code because it was missing and there were bugs
 def find_html_in_between(articlehtml: str, keyhtml: str):
@@ -39,19 +37,14 @@ def find_html_in_between(articlehtml: str, keyhtml: str):
 
 # uncommented this because some newspapers like psychology today
 # don't have the json format
-def emily_datefind_html(article_html):  # rename to _html
-    global newscuesdf  # I'm confused regarding this, but OK
-    try:
-        tmp = newscuesdf
-    except:
-        htmldatemapfile = 'datemap.csv'
-        try:
-            newscuesdf = pd.read_csv(pathtohtmldatemap='datemap.csv', index_col=0).T
-        except:
-            print("   DEATH ERROR:", htmldatemapfile, "not found.")
-            return ""
-    if newssource in newscuesdf.columns:
-        dateraw = find_html_in_between(article_html, newscuesdf[newssource][0])
+def emily_datefind_html(article_html: str, url: str, map_file="datemap.csv"):  # rename to _html
+    datemap = pd.read_csv(map_file, index_col=0)
+
+    html_pattern = datemap['htmlparent'][datemap['domain'].apply(lambda domain: domain in url)]
+
+    if html_pattern.size == 1:
+        html_pattern = html_pattern.iloc[0]
+        dateraw = find_html_in_between(article_html, html_pattern)
         # print(dateraw, newscuesdf[newssource][0])  for debugging purposes
         try:
             dateparsed = next(datefinder.find_dates(dateraw))
@@ -66,7 +59,8 @@ def emily_datefind_html(article_html):  # rename to _html
 # {'datePublished': '2020-06-29T18:51:27-04:00', 'dateModified': '2020-06-29T19:52:56-04:00'}
 def emily_datefind_json(article_html):  # rename to _json
     retval = re.findall(r"[\"\']date\w+[\"\']:\s*[\"\'][\w\-:\.\+]+[\"\']", article_html)
-    if len(retval) == 0: return {}
+    if len(retval) == 0:
+        return {}
     # format so items compatible with pandas DataFrame:
     retval = list(map(lambda s: re.split(r'[\"\'\s]+', s)[1::2], retval))
     retval = pd.DataFrame(retval)
