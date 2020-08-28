@@ -5,39 +5,41 @@ import datetime
 import datefinder
 from date_guesser import guess_date, Accuracy
 
-# added this code because it was missing and there were bugs
-def find_html_in_between(articlehtml: str, keyhtml: str):
-    if keyhtml not in articlehtml:
-        return None
-
-    startindex = articlehtml.index(keyhtml)
-    dateindex = 0
-
-    numopen = 1
-    endindex = -1
-
-    for i in range(startindex + len(keyhtml) - 1, min(startindex + 1000, len(articlehtml))):
-        if dateindex == 0 and articlehtml[i] == '>':
-            dateindex = i + 1
-
-        if articlehtml[i] == '<' and i + 1 < len(articlehtml):
-            # print('numopen ' + str(numopen))
-            # print('art i+1: ' + articlehtml[i + 1])
-            if articlehtml[i + 1] == '/':
-                numopen -= 1
-            else:
-                numopen += 1
-
-        if numopen == 0:
-            endindex = i
-            break
-
-    return articlehtml[dateindex: endindex]
-
-
 # uncommented this because some newspapers like psychology today
 # don't have the json format
 def emily_datefind_html(article_html: str, url: str, map_file="datemap.csv"):  # rename to _html
+    """
+    Given the html and url of a news article,
+    return the date published in isoformat or an empty string if date cannot be found
+    """
+    def find_html_in_between(articlehtml: str, keyhtml: str):
+        if keyhtml not in articlehtml:
+            return None
+
+        startindex = articlehtml.index(keyhtml)
+        dateindex = 0
+
+        numopen = 1
+        endindex = -1
+
+        for i in range(startindex + len(keyhtml) - 1, min(startindex + 1000, len(articlehtml))):
+            if dateindex == 0 and articlehtml[i] == '>':
+                dateindex = i + 1
+
+            if articlehtml[i] == '<' and i + 1 < len(articlehtml):
+                # print('numopen ' + str(numopen))
+                # print('art i+1: ' + articlehtml[i + 1])
+                if articlehtml[i + 1] == '/':
+                    numopen -= 1
+                else:
+                    numopen += 1
+
+            if numopen == 0:
+                endindex = i
+                break
+
+        return articlehtml[dateindex: endindex]
+
     datemap = pd.read_csv(map_file, index_col=0)
 
     html_pattern = datemap['htmlparent'][datemap['domain'].apply(lambda domain: domain in url)]
@@ -58,6 +60,11 @@ def emily_datefind_html(article_html: str, url: str, map_file="datemap.csv"):  #
 # Returns a dictionary in the form
 # {'datePublished': '2020-06-29T18:51:27-04:00', 'dateModified': '2020-06-29T19:52:56-04:00'}
 def emily_datefind_json(article_html):  # rename to _json
+    """
+    Given the html of a news article,
+    return a dictionary with keys that starts with date, if found, such as datePublished, dateModified, or dateCreated.
+    The values of the dictionary should be in isoformat. If such keys are not found, it returns an empty dictionary.
+    """
     retval = re.findall(r"[\"\']date\w+[\"\']:\s*[\"\'][\w\-:\.\+]+[\"\']", article_html)
     if len(retval) == 0:
         return {}
@@ -71,6 +78,23 @@ def emily_datefind_json(article_html):  # rename to _json
 
 
 def get_dates(article_html, url):
+    """
+    Given the html and the url of the url,
+    return the publication date and the modification date in isoformat as a tuple.
+    >>> # format is (date_published_iso, date_modified_iso)
+    >>> ("2020-05-27T21:59:25+01:00", "2020-05-28T18:34:13+01:00")
+
+    If either of the publication date or the modification date cannot be found, they will be a
+    empty string in the tuple.
+    For instance, here is the example if the modification date was not found
+    >>> ("2020-05-27T21:59:25+01:00", "")
+
+    How it works:
+    1) Looks for date in a website's json.
+    2) If date not found, look for date in url.
+    3) If date still not found, look for date in html.
+    4) Use media cloud's dateguesser.
+    """
     # first try the json method
     datedict = emily_datefind_json(article_html)  # method name changed
     pubtime = datedict.get("datePublished", '')
