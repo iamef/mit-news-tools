@@ -1,3 +1,5 @@
 build/
+mit_news_tools.egg-info/
 mit_news_tools_iamef.egg-info/
 docs/_build
+mitnewstools/__pycache__/
