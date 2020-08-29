@@ -94,7 +94,7 @@ def selenium_download(url, driver=None, return_html=True):
     return driver
 
 
-def extract_news_urls_selenium(driver, match_file="newsurlpatterns.csv"):
+def extract_news_urls_selenium(driver, match_file="newsurlpatterns.csv") -> pd.DataFrame:
     all_links = driver.find_elements_by_partial_link_text('')
     url = driver.current_url
     domain = extract_domain(url)
@@ -115,7 +115,11 @@ def extract_news_urls_selenium(driver, match_file="newsurlpatterns.csv"):
     return news_links
 
 
-def extract_base_url(url: str, endswithslash=True):
+def extract_base_url(url: str, endswithslash=True) -> str:
+    """
+    Return a url that cuts off the item after the ?
+    If endswithslash is True, returns a url that ends with a slash
+    """
     # NOT FOR ARTICLES
     parsed_url = urlparse(url)
     base_url = 'https://' + parsed_url.netloc + parsed_url.path
@@ -125,7 +129,12 @@ def extract_base_url(url: str, endswithslash=True):
     return base_url
 
 
-def extract_domain(url: str):
+def extract_domain(url: str) -> str:
+    """
+    Extracts the domain of a site.
+    For instance, "https://www.economist.com/news/2020/06/19/frequently-asked-questions"
+    becomes "economist.com"
+    """
     if not (url.startswith('http://') or url.startswith('https://')):
         url = '//' + url
 
@@ -136,7 +145,11 @@ def extract_domain(url: str):
     return domain
 
 
-def extract_urls(html: str, base_url: str):  # todo rename domain to baseurl
+def extract_urls(html: str, base_url: str) -> list:
+    """
+    Given the html and the url of a news homepage,
+    return a list of urls that the homepage links to.
+    """
     # format domain like this: https://www.economist.com/
     base_url = extract_base_url(base_url)
 
@@ -249,7 +262,7 @@ def is_news_url(url: str, domain: str, match_formula='newsurlpatterns.csv', blac
     return False
 
 
-def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv'):
+def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv') -> list:
     # add the global file system later it's so we don't have to load it everytime
 
     domain = extract_domain(domain)
@@ -320,7 +333,7 @@ from date_guesser import guess_date, Accuracy
 
 # uncommented this because some newspapers like psychology today
 # don't have the json format
-def datefind_html(article_html: str, url: str, map_file="datemap.csv"):  # rename to _html
+def datefind_html(article_html: str, url: str, map_file="datemap.csv") -> str:  # rename to _html
     """
     Given the html and url of a news article,
     return the date published in isoformat or an empty string if date cannot be found
@@ -372,7 +385,7 @@ def datefind_html(article_html: str, url: str, map_file="datemap.csv"):  # renam
 
 # Returns a dictionary in the form
 # {'datePublished': '2020-06-29T18:51:27-04:00', 'dateModified': '2020-06-29T19:52:56-04:00'}
-def datefind_json(article_html):  # rename to _json
+def datefind_json(article_html: str) -> dict:  # rename to _json
     """
     Given the html of a news article,
     return a dictionary with keys that starts with date, if found, such as datePublished, dateModified, or dateCreated.
@@ -390,22 +403,30 @@ def datefind_json(article_html):  # rename to _json
     return retval
 
 
-def get_dates(article_html, url):
+def get_dates(article_html: str, url: str) -> tuple:
     """
     Given the html and the url of the url,
     return the publication date and the modification date in isoformat as a tuple.
-    >>> # format is (date_published_iso, date_modified_iso)
-    >>> ("2020-05-27T21:59:25+01:00", "2020-05-28T18:34:13+01:00")
+
+    # format is (date_published_iso, date_modified_iso)
+
+    ("2020-05-27T21:59:25+01:00", "2020-05-28T18:34:13+01:00")
 
     If either of the publication date or the modification date cannot be found, they will be a
     empty string in the tuple.
+
     For instance, here is the example if the modification date was not found
-    >>> ("2020-05-27T21:59:25+01:00", "")
+
+    ("2020-05-27T21:59:25+01:00", "")
 
     How it works:
+
     1) Looks for date in a website's json.
+
     2) If date not found, look for date in url.
+
     3) If date still not found, look for date in html.
+
     4) Use media cloud's dateguesser.
     """
     # first try the json method
