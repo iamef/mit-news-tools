@@ -21,8 +21,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'mit-news-tools'
-copyright = '2020, Emily Fan, Arun Wongprommoon'
-author = 'Emily Fan, Arun Wongprommoon'
+copyright = '2020, Emily Fan, Arun Wongprommoon, and Max Tegmark'
+author = 'Emily Fan, Arun Wongprommoon, and Max Tegmark'
 
 # The short X.Y version
 version = ''
