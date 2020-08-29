@@ -106,7 +106,7 @@ def extract_news_urls_selenium(driver, match_file="newsurlpatterns.csv") -> pd.D
 
     for link in all_links:
         base_url = extract_base_url(link.get_property('href'))
-        if is_news_url(base_url, domain, match_formula):
+        if is_news_article(base_url, domain, match_formula):
             news_links.append(
                 {'url': base_url, 'x': link.location['x'], 'y': link.location['y'],
                  'width': link.size['width'], 'height': link.size['height'],
@@ -203,7 +203,14 @@ def get_match_formula(domain, file='newsurlpatterns.csv'):
     return match_formula
 
 
-def is_news_url(url: str, domain: str, match_formula='newsurlpatterns.csv', blacklist=None):
+def is_news_article(url: str, domain: str, match_formula='newsurlpatterns.csv', blacklist=None) -> bool:
+    """
+    :param url: url of what is possibly an article.
+    :param domain: the domain name of the newssite that the url should belong to
+    :param match_formula: (optional) a list of regular expressions such that the url matches at least one of them
+    :param blacklist: (optional) A list of regular expressions that the url should not follow
+    :return: True if the url is a news article from the same domain on the website
+    """
     # format domain like this washingtonpost.com
     domain = extract_domain(domain)
 
@@ -311,7 +318,7 @@ def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv
     filtered_urls = []
     for url in urls:
         # TODO perhaps change the url so that the ?# parts get left out
-        if is_news_url(url, domain, common_formula):
+        if is_news_article(url, domain, common_formula):
             filtered_urls.append(url)
 
     return filtered_urls
