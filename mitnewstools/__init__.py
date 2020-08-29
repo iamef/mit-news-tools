@@ -270,6 +270,12 @@ def is_news_article(url: str, domain: str, match_formula='newsurlpatterns.csv', 
 
 
 def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv') -> list:
+    """
+    :param urls: list of urls
+    :param domain: domain the url should be in
+    :param match_file: (optional) file that contains a list of regular expressions for news articles
+    :return: a list of urls that are news articles and come from the specified domain
+    """
     # add the global file system later it's so we don't have to load it everytime
 
     domain = extract_domain(domain)
