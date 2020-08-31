@@ -109,7 +109,7 @@ def extract_news_urls_selenium(driver, match_file=None) -> pd.DataFrame:
     for link in all_links:
         base_url = extract_base_url(link.get_property('href'))
         if is_news_article(base_url, domain, match_formula):
-            news_links.append(
+            news_links = news_links.append(
                 {'url': base_url, 'x': link.location['x'], 'y': link.location['y'],
                  'width': link.size['width'], 'height': link.size['height'],
                  'area': link.size['width'] * link.size['height']}, ignore_index=True)
