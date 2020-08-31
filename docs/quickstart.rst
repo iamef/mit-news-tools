@@ -9,6 +9,14 @@ Install the package with pip::
 
     $ pip install mit-news-tools
 
+Please install the packages that mit-news-tools depends on as well::
+
+    $ pip install pandas
+    $ pip install datefinder
+    $ pip install date_guesser
+    $ pip install confusables
+    $ pip install selenium
+
 Usage
 =====
 
