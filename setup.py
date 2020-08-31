@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mit-news-tools",
-    version="0.0.2",
+    version="0.0.3",
     author="Emily Fan, Arun Wongprommoon, and Max Tegmark",
     author_email="emilyfan@mit.edu",
     description="tools to help people better understand the news",
