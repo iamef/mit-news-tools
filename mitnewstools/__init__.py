@@ -94,11 +94,13 @@ def selenium_download(url, driver=None, return_html=True):
     return driver
 
 
-def extract_news_urls_selenium(driver, match_file="newsurlpatterns.csv") -> pd.DataFrame:
+def extract_news_urls_selenium(driver, match_file=None) -> pd.DataFrame:
     all_links = driver.find_elements_by_partial_link_text('')
     url = driver.current_url
     domain = extract_domain(url)
 
+    if match_file is None:
+        match_file = os.path.abspath(os.path.dirname(__file__)) + '/' + "newsurlpatterns.csv"
     match_formula = get_match_formula(url, match_file)
 
     # note that some links will be listed more than once
@@ -190,8 +192,11 @@ def extract_urls(html: str, base_url: str) -> list:
 
 
 # TODO to test this method
-def get_match_formula(domain, file='newsurlpatterns.csv'):
+def get_match_formula(domain, file=None):
     domain = extract_domain(domain)
+
+    if file is None:
+        file = os.path.abspath(os.path.dirname(__file__)) + '/' + "newsurlpatterns.csv"
 
     newsurlpatterns = pd.read_csv(file)
     match_formula = newsurlpatterns[newsurlpatterns['url'].str.contains(domain)]['pattern']
@@ -203,7 +208,7 @@ def get_match_formula(domain, file='newsurlpatterns.csv'):
     return match_formula
 
 
-def is_news_article(url: str, domain: str, match_formula='newsurlpatterns.csv', blacklist=None) -> bool:
+def is_news_article(url: str, domain: str, match_formula=None, blacklist=None) -> bool:
     """
     :param url: url of what is possibly an article.
     :param domain: the domain name of the newssite that the url should belong to
@@ -251,8 +256,8 @@ def is_news_article(url: str, domain: str, match_formula='newsurlpatterns.csv', 
             r"^./category/.*$",
         ]
 
-    if type(match_formula) is str:
-        match_formula = get_match_formula(domain, match_formula)
+    if match_formula is None:
+        match_formula = get_match_formula(domain)
 
     if domain not in url:
         return False
@@ -269,7 +274,7 @@ def is_news_article(url: str, domain: str, match_formula='newsurlpatterns.csv', 
     return False
 
 
-def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv') -> list:
+def filter_article_urls(urls: list, domain: str, match_file=None) -> list:
     """
     :param urls: list of urls
     :param domain: domain the url should be in
@@ -319,6 +324,9 @@ def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv
     #     r"^./category/.*$",
     # ]
 
+    if match_file is None:
+        match_file = os.path.abspath(os.path.dirname(__file__)) + '/' + "newsurlpatterns.csv"
+
     common_formula = get_match_formula(domain, match_file)
 
     filtered_urls = []
@@ -339,6 +347,8 @@ def filter_article_urls(urls: list, domain: str, match_file='newsurlpatterns.csv
 ############################### SCRAPE DATE INFO #############################################
 import pandas as pd
 import re
+import os
+
 
 import datetime
 import datefinder
@@ -346,7 +356,7 @@ from date_guesser import guess_date, Accuracy
 
 # uncommented this because some newspapers like psychology today
 # don't have the json format
-def datefind_html(article_html: str, url: str, map_file="datemap.csv") -> str:  # rename to _html
+def datefind_html(article_html: str, url: str, map_file=None) -> str:  # rename to _html
     """
     Given the html and url of a news article,
     return the date published in isoformat or an empty string if date cannot be found
@@ -379,6 +389,8 @@ def datefind_html(article_html: str, url: str, map_file="datemap.csv") -> str:  
 
         return articlehtml[dateindex: endindex]
 
+    if map_file is None:
+        map_file = os.path.abspath(os.path.dirname(__file__)) + '/' + "datemap.csv"
     datemap = pd.read_csv(map_file, index_col=0)
 
     html_pattern = datemap['htmlparent'][datemap['domain'].apply(lambda domain: domain in url)]
