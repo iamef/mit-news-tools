@@ -58,7 +58,7 @@ offguardian,https://off-guardian.org/,"r""^.*\/[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\
 peoplesdaily,http://en.people.cn/,"r""^.*\/[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\/[0-9a-z.\/_?=&-]+$""",
 pjmedia,https://pjmedia.com/,"r""^.*\/[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\/[0-9a-z.\/_?=&-]+$""",
 propublica,https://www.propublica.org/,"r""^.*/article/[a-z0-9]+-[a-z0-9]+-[a-z-]+""",
-psychologytoday,https://www.psychologytoday.com/us,,
+psychologytoday,https://www.psychologytoday.com/us,"r""^.*/blog/[a-z0-9-]+/\d{6}/[a-z0-9]+-[a-z0-9]+-[a-z0-9-]+/?$""",
 rawstory,http://rawstory.com,,
 reuters,https://www.reuters.com/,"r""^.*\/article\/[0-9a-z\/-]+-id[0-9A-Z]{11}""",
 rt,https://rt.com/,"r""^.*\/[0-9a-z-]+-[0-9a-z-]{20,}\/?$""",
