@@ -67,8 +67,6 @@ def asciify(text: str, return_failed_chars=False):
 ############################### SCRAPING NEWS HOMEPAGE TOOLS #################################################
 
 
-import requests
-from newspaper import Article
 import re
 from urllib.parse import urlparse
 import pandas as pd
